@@ -2,21 +2,20 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import PostList from "../components/PostList";
 import Sidebar from "../components/Sidebar";
+import "../styles/Home.css";
 
 function Home() {
   return (
     <>
       <Header></Header>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-3">
-            <Sidebar></Sidebar>
-          </div>
-          <div className="col-md-9">
-            <PostList></PostList>
-          </div>
+      <main>
+        <div className="Side">
+          <Sidebar></Sidebar>
         </div>
-      </div>
+        <div className="List">
+          <PostList></PostList>
+        </div>
+      </main>
       <Footer></Footer>
     </>
   );

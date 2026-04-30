@@ -1,0 +1,16 @@
+main {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  gap: 24px;
+}
+
+.Side {
+  flex: 1;
+  min-width: 280px;
+}
+
+.List {
+  flex: 3;
+}

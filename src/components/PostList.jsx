@@ -5,24 +5,27 @@ function PostList() {
   const [posts, setPosts] = useState([
     {
       id: 1,
-      userName: "Dev 1",
-      title: "Flutter with Android Studio",
-      description: "Android Studio is good for flutter (lie)",
-      category: "Android",
+      userName: "Tech Radar",
+      title: "React 19 is officially here",
+      description:
+        "The new React Compiler and 'Actions' are changing how we handle state and performance.",
+      category: "Web Dev",
     },
     {
       id: 2,
-      userName: "Dev 2",
-      title: "React for a mobile developer",
-      description: "React is some sort of easy",
-      category: "Web",
+      userName: "Cloud Guru",
+      title: "AI integration in VS Code",
+      description:
+        "GitHub Copilot Extensions now allow developers to build AI agents directly inside the editor.",
+      category: "Tools",
     },
     {
       id: 3,
-      userName: "Dev 3",
-      title: "Bootstrap vs Tailwind",
-      description: "Bootstrap is better than Tailwind (lie)",
-      category: "Web",
+      userName: "Dev Insider",
+      title: "Apple M4 Chip Performance",
+      description:
+        "The latest M4 chips are showing massive gains in AI processing for mobile and desktop development.",
+      category: "Hardware",
     },
   ]);
 

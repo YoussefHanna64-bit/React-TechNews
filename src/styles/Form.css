@@ -1,0 +1,32 @@
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+input,
+textarea {
+  padding: 8px;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+textarea {
+  resize: none;
+}
+
+.submit {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: darkorange;
+}

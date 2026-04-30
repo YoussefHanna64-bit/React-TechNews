@@ -1,0 +1,46 @@
+.Card {
+  padding: 16px;
+  margin: 8px;
+  border: 1px solid lightgrey;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.Category {
+  background-color: orange;
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.Title {
+  margin: 8px 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.UserName {
+  color: gray;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-left: 8px;
+}
+
+.ReadMore {
+  background-color: transparent;
+  color: orange;
+  border: 1px solid orange;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.ReadMore:hover {
+  background-color: orange;
+  color: white;
+}
