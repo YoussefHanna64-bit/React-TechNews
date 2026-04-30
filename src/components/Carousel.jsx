@@ -64,6 +64,7 @@ class Carousel extends Component {
 
   render() {
     const { images, currentImgIndex, titles } = this.state;
+    
     return (
       <>
         <div className="carousel">

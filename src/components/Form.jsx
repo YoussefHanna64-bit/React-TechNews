@@ -11,7 +11,7 @@ class Form extends Component {
           <input type="text" placeholder="User Name" />
           <input type="text" placeholder="Image URL" />
           <textarea rows="3" placeholder="Description"></textarea>
-          <button className="submit">Publish News</button>
+          <button className="submit">Publish</button>
         </div>
       </>
     );
