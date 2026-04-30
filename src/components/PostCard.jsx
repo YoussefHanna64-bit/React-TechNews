@@ -1,20 +1,22 @@
+import { Component } from "react";
 import "../styles/PostCard.css";
 
-function PostCard(props) {
-  return (
-    <>
-      {
+class PostCard extends Component {
+  render() {
+    const { category, title, userName, description } = this.props;
+    return (
+      <>
         <div className="Card">
-          <p className="Category">{props.category}</p>
+          <p className="Category">{category}</p>
           <h5 className="Title">
-            {props.title}
-            <small className="UserName">by {props.userName}</small>
+            {title}
+            <small className="UserName">by {userName}</small>
           </h5>
-          <p>{props.description}</p>
+          <p>{description}</p>
           <button className="ReadMore">Read More</button>
         </div>
-      }
-    </>
-  );
+      </>
+    );
+  }
 }
 export default PostCard;
