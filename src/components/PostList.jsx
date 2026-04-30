@@ -1,5 +1,6 @@
 import { Component, useState } from "react";
 import PostCard from "./PostCard";
+import axios from "axios";
 
 class PostList extends Component {
   constructor(props) {
@@ -7,33 +8,14 @@ class PostList extends Component {
   }
 
   state = {
-    posts: [
-      {
-        id: 1,
-        userName: "Tech Radar",
-        title: "React 19 is officially here",
-        description:
-          "The new React Compiler and 'Actions' are changing how we handle state and performance.",
-        category: "Web Dev",
-      },
-      {
-        id: 2,
-        userName: "Cloud Guru",
-        title: "AI integration in VS Code",
-        description:
-          "GitHub Copilot Extensions now allow developers to build AI agents directly inside the editor.",
-        category: "Tools",
-      },
-      {
-        id: 3,
-        userName: "Dev Insider",
-        title: "Apple M4 Chip Performance",
-        description:
-          "The latest M4 chips are showing massive gains in AI processing for mobile and desktop development.",
-        category: "Hardware",
-      },
-    ],
+    posts: [],
   };
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:3000/posts")
+      .then((res) => this.setState({ posts: res.data }));
+  }
 
   render() {
     const { posts } = this.state;
@@ -46,6 +28,7 @@ class PostList extends Component {
             title={post.title}
             description={post.description}
             category={post.category}
+            imageURL={post.imageURL}
           />
         ))}
       </>
