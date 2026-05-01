@@ -1,26 +1,26 @@
-import { Component } from "react";
+import { Component, useState } from "react";
 import "../styles/Form.css";
 import axios from "axios";
 
-class Form extends Component {
-  state = {
+const Form = ({ addPost }) => {
+  const [state, setState] = useState({
     title: "",
     category: "",
     userName: "",
     imageURL: "",
     description: "",
+  });
+
+  const handleChange = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
   };
 
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    this.props.addPost(this.state);
+    addPost(state);
 
-    this.setState({
+    setState({
       title: "",
       category: "",
       userName: "",
@@ -29,51 +29,48 @@ class Form extends Component {
     });
   };
 
-  render() {
-    const { title, category, userName, imageURL, description } = this.state;
+  return (
+    <>
+      <form className="Form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Title"
+          name="title"
+          value={state.title}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          placeholder="Category"
+          name="category"
+          value={state.category}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          placeholder="User Name"
+          name="userName"
+          value={state.userName}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          placeholder="Image URL"
+          name="imageURL"
+          value={state.imageURL}
+          onChange={handleChange}
+        />
+        <textarea
+          rows="3"
+          placeholder="Description"
+          name="description"
+          value={state.description}
+          onChange={handleChange}
+        ></textarea>
+        <button className="submit">Publish</button>
+      </form>
+    </>
+  );
+};
 
-    return (
-      <>
-        <form className="Form" onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            placeholder="Title"
-            name="title"
-            value={title}
-            onChange={this.handleChange}
-          />
-          <input
-            type="text"
-            placeholder="Category"
-            name="category"
-            value={category}
-            onChange={this.handleChange}
-          />
-          <input
-            type="text"
-            placeholder="User Name"
-            name="userName"
-            value={userName}
-            onChange={this.handleChange}
-          />
-          <input
-            type="text"
-            placeholder="Image URL"
-            name="imageURL"
-            value={imageURL}
-            onChange={this.handleChange}
-          />
-          <textarea
-            rows="3"
-            placeholder="Description"
-            name="description"
-            value={description}
-            onChange={this.handleChange}
-          ></textarea>
-          <button className="submit">Publish</button>
-        </form>
-      </>
-    );
-  }
-}
 export default Form;

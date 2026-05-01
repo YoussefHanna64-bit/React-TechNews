@@ -54,3 +54,15 @@
   border-radius: 8px;
   flex-shrink: 0;
 }
+
+.CardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.VoteButtons {
+  display: flex;
+  gap: 16px;
+}

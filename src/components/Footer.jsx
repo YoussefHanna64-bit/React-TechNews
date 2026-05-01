@@ -1,15 +1,13 @@
 import { Component } from "react";
 import "../styles/Footer.css";
 
-class Footer extends Component {
-  render() {
-    return (
-      <>
-        <footer>
-          <p>Copyright &copy; 4 Yousef</p>
-        </footer>
-      </>
-    );
-  }
-}
+const Footer = () => {
+  return (
+    <>
+      <footer>
+        <p>Copyright &copy; 2023 Yousef. All rights reserved.</p>
+      </footer>
+    </>
+  );
+};
 export default Footer;
