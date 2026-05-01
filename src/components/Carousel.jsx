@@ -1,23 +1,15 @@
 import { Component } from "react";
 import "../styles/Carousel.css";
-import axios from "axios";
 
 class Carousel extends Component {
   state = {
-    images: [],
     currentImgIndex: 0,
-    titles: [],
   };
 
   timerId = null;
 
   componentDidMount() {
     this.auto();
-    axios.get("http://localhost:3000/posts").then((res) => {
-      const images = res.data.slice(0, 3).map((post) => post.imageURL);
-      const titles = res.data.slice(0, 3).map((post) => post.title);
-      this.setState({ images, titles });
-    });
   }
 
   auto() {
@@ -40,8 +32,7 @@ class Carousel extends Component {
   next = () => {
     this.stop();
     this.setState(() => ({
-      currentImgIndex:
-        (this.state.currentImgIndex + 1) % this.state.images.length,
+      currentImgIndex: (this.state.currentImgIndex + 1) % 3,
     }));
     this.auto();
   };
@@ -49,22 +40,27 @@ class Carousel extends Component {
   prev = () => {
     this.stop();
     this.setState(() => ({
-      currentImgIndex:
-        (this.state.currentImgIndex - 1 + this.state.images.length) %
-        this.state.images.length,
+      currentImgIndex: (this.state.currentImgIndex - 1 + 3) % 3,
     }));
     this.auto();
   };
 
-  setIndex(index) {
+  setcurrentImgIndex(index) {
     this.stop();
     this.setState({ currentImgIndex: index });
     this.auto();
   }
 
   render() {
-    const { images, currentImgIndex, titles } = this.state;
-    
+    const { currentImgIndex } = this.state;
+
+    if (this.props.posts.length === 0) {
+      return <div className="carousel">No posts available</div>;
+    }
+
+    const images = this.props.posts.slice(0, 3).map((post) => post.imageURL);
+    const titles = this.props.posts.slice(0, 3).map((post) => post.title);
+
     return (
       <>
         <div className="carousel">
@@ -78,15 +74,15 @@ class Carousel extends Component {
           <img src="right.png" id="right" onClick={this.next} />
           <ul>
             <li
-              onClick={() => this.setIndex(0)}
+              onClick={() => this.setcurrentImgIndex(0)}
               className={currentImgIndex === 0 ? "active" : ""}
             ></li>
             <li
-              onClick={() => this.setIndex(1)}
+              onClick={() => this.setcurrentImgIndex(1)}
               className={currentImgIndex === 1 ? "active" : ""}
             ></li>
             <li
-              onClick={() => this.setIndex(2)}
+              onClick={() => this.setcurrentImgIndex(2)}
               className={currentImgIndex === 2 ? "active" : ""}
             ></li>
           </ul>

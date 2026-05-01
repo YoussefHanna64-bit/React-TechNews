@@ -7,18 +7,13 @@ class PostList extends Component {
     super(props);
   }
 
-  state = {
-    posts: [],
-  };
-
-  componentDidMount() {
-    axios
-      .get("http://localhost:3000/posts")
-      .then((res) => this.setState({ posts: res.data }));
-  }
-
   render() {
-    const { posts } = this.state;
+    const { posts } = this.props;
+
+    if (posts.length === 0) {
+      return <div>No posts available</div>;
+    }
+
     return (
       <>
         {posts.map((post) => (

@@ -1,7 +1,7 @@
 {
   "posts": [
     {
-      "id": 1,
+      "id": "1",
       "userName": "shiva shanker",
       "title": "Claude AI Chrome Extension: The Browser-Based Development Tool You Didn't Know You Needed",
       "description": "Claude AI just launched enhanced Chrome integration that's changing how developers research, debug, and learn directly in the browser.",
@@ -9,7 +9,7 @@
       "imageURL": "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Faqzhlqfn53mbwvdyy0s6.webp"
     },
     {
-      "id": 2,
+      "id": "2",
       "userName": "Kevin Toshihiro Uehara",
       "title": "WebMCP and WebAI: Exploring native AI tools in Chrome",
       "description": "As the web of agents evolves, Google want to help websites play an active role in how AI agents interact with them.",
@@ -17,7 +17,7 @@
       "imageURL": "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fsomy0s26bsbzxv698e8u.jpg"
     },
     {
-      "id": 3,
+      "id": "3",
       "userName": "Julien Avezou",
       "title": "AI through Visuals - Hardware",
       "description": "Most AI content today feels flat. We read threads. We skim blog posts. We copy prompts. But very rarely do we actually see how AI systems work.",
@@ -25,7 +25,7 @@
       "imageURL": "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fijuf27pod0mg1y9g6o8h.png"
     },
     {
-      "id": 4,
+      "id": "4",
       "userName": "Akshay Kumar",
       "title": "MCP Server: The Practical Guide to Building Tool-Aware AI Apps",
       "description": "How the Model Context Protocol (MCP) helps AI assistants use your tools safely and consistently.",
@@ -33,12 +33,13 @@
       "imageURL": "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fimages.unsplash.com%2Fphoto-1518770660439-4636190af475%3Fauto%3Dformat%26fit%3Dcrop%26w%3D1600%26q%3D80"
     },
     {
-      "id": 5,
+      "id": "5",
       "userName": "Shweta Patel",
       "title": "Why I Built a Brain for My AI Agents — and What It Taught Me",
       "description": "Anamnesis v0.3.0: The cognitive architecture that emerged when a physician stopped treating agent memory as an engineering problem and started treating it as a clinical one.",
       "category": "Architecture",
       "imageURL": "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F3rhesnl1tjvpqsyl81ji.png"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

@@ -8,7 +8,7 @@ class Sidebar extends Component {
       <>
         <aside>
           <h5 className="CreatePost">Create Post</h5>
-          <Form />
+          <Form addPost={this.props.addPost} />
         </aside>
       </>
     );
