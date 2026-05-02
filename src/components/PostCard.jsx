@@ -47,7 +47,6 @@ const PostCard = ({ category, title, userName, description, imageURL }) => {
             <p>{description}</p>
 
             <div className="d-flex justify-content-between align-items-center pt-3 mt-auto">
-              <button className="ReadMore">Read More</button>
               <div>
                 <Upvote count={upvoteCounter} handleUpvote={handleUpvote} />
                 <Downvote
@@ -55,6 +54,7 @@ const PostCard = ({ category, title, userName, description, imageURL }) => {
                   handleDownvote={handleDownvote}
                 />
               </div>
+              <button className="ReadMore">Read More</button>
             </div>
           </div>
         </div>
