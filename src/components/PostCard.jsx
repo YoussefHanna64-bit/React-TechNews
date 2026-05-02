@@ -1,33 +1,38 @@
-import { Component, useState } from "react";
+import { memo, useCallback, useReducer, useState } from "react";
 import "../styles/PostCard.css";
 import Upvote from "./Upvote";
 import Downvote from "./Downvote";
 
+function voteReducer(state, action) {
+  switch (action.type) {
+    case "upvote":
+      return {
+        upvoteCounter: state.upvoteCounter === 1 ? 0 : 1,
+        downvoteCounter: 0,
+      };
+    case "downvote":
+      return {
+        upvoteCounter: 0,
+        downvoteCounter: state.downvoteCounter === 1 ? 0 : 1,
+      };
+    default:
+      return state;
+  }
+}
+
 const PostCard = ({ category, title, userName, description, imageURL }) => {
-  const [upvoteCounter, setUpvoteCounter] = useState(0);
-  const [downvoteCounter, setDownvoteCounter] = useState(0);
+  const [voteState, dispatch] = useReducer(voteReducer, {
+    upvoteCounter: 0,
+    downvoteCounter: 0,
+  });
 
-  const handleUpvote = () => {
-    if (downvoteCounter > 0) {
-      setDownvoteCounter(downvoteCounter - 1);
-    }
-    if (upvoteCounter < 1) {
-      setUpvoteCounter(upvoteCounter + 1);
-    } else {
-      setUpvoteCounter(upvoteCounter - 1);
-    }
-  };
+  const handleUpvote = useCallback(() => {
+    dispatch({ type: "upvote" });
+  }, []);
 
-  const handleDownvote = () => {
-    if (upvoteCounter > 0) {
-      setUpvoteCounter(upvoteCounter - 1);
-    }
-    if (downvoteCounter < 1) {
-      setDownvoteCounter(downvoteCounter + 1);
-    } else {
-      setDownvoteCounter(downvoteCounter - 1);
-    }
-  };
+  const handleDownvote = useCallback(() => {
+    dispatch({ type: "downvote" });
+  }, []);
 
   return (
     <>
@@ -39,7 +44,7 @@ const PostCard = ({ category, title, userName, description, imageURL }) => {
               <p className="Category">{category}</p>
             </div>
 
-            <h5 className="">
+            <h5 className="Title">
               {title}
               <small className="UserName">by {userName}</small>
             </h5>
@@ -48,9 +53,12 @@ const PostCard = ({ category, title, userName, description, imageURL }) => {
 
             <div className="d-flex justify-content-between align-items-center pt-3 mt-auto">
               <div>
-                <Upvote count={upvoteCounter} handleUpvote={handleUpvote} />
+                <Upvote
+                  count={voteState.upvoteCounter}
+                  handleUpvote={handleUpvote}
+                />
                 <Downvote
-                  count={downvoteCounter}
+                  count={voteState.downvoteCounter}
                   handleDownvote={handleDownvote}
                 />
               </div>
@@ -63,4 +71,4 @@ const PostCard = ({ category, title, userName, description, imageURL }) => {
   );
 };
 
-export default PostCard;
+export default memo(PostCard);

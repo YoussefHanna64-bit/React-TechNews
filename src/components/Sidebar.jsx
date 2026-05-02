@@ -1,5 +1,4 @@
 import Form from "./Form";
-import { Component } from "react";
 
 const Sidebar = ({ addPost }) => {
   return (

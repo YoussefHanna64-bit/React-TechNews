@@ -1,5 +1,3 @@
-import { Component } from "react";
-
 const Downvote = ({ count, handleDownvote }) => {
   return (
     <>

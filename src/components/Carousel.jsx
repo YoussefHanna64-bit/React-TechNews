@@ -1,94 +1,68 @@
-import { Component } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import "../styles/Carousel.css";
 
-class Carousel extends Component {
-  state = {
-    currentImgIndex: 0,
-  };
+const Carousel = ({ posts }) => {
+  const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
-  timerId = null;
+  const images = useMemo(() => {
+    return posts.slice(0, 3).map((post) => post.imageURL);
+  }, [posts]);
 
-  componentDidMount() {
-    this.auto();
-  }
+  const titles = useMemo(() => {
+    return posts.slice(0, 3).map((post) => post.title);
+  }, [posts]);
 
-  auto() {
-    if (this.timerId !== null) {
+  useEffect(() => {
+    if (images.length === 0) {
       return;
     }
 
-    this.timerId = setInterval(() => {
-      this.next();
+    const timerId = setInterval(() => {
+      setCurrentImgIndex((prevIndex) => (prevIndex + 1) % 3);
     }, 3000);
-  }
 
-  stop() {
-    if (this.timerId !== null) {
-      clearInterval(this.timerId);
-      this.timerId = null;
-    }
-  }
+    return () => clearInterval(timerId);
+  }, [images.length, currentImgIndex]);
 
-  next = () => {
-    this.stop();
-    this.setState(() => ({
-      currentImgIndex: (this.state.currentImgIndex + 1) % 3,
-    }));
-    this.auto();
+  const next = () => {
+    setCurrentImgIndex((prevIndex) => (prevIndex + 1) % 3);
   };
 
-  prev = () => {
-    this.stop();
-    this.setState(() => ({
-      currentImgIndex: (this.state.currentImgIndex - 1 + 3) % 3,
-    }));
-    this.auto();
+  const prev = () => {
+    setCurrentImgIndex((prevIndex) => (prevIndex - 1 + 3) % 3);
   };
 
-  setcurrentImgIndex(index) {
-    this.stop();
-    this.setState({ currentImgIndex: index });
-    this.auto();
+  if (posts.length === 0) {
+    return <div className="carousel">No posts available</div>;
   }
 
-  render() {
-    const { currentImgIndex } = this.state;
-
-    if (this.props.posts.length === 0) {
-      return <div className="carousel">No posts available</div>;
-    }
-
-    const images = this.props.posts.slice(0, 3).map((post) => post.imageURL);
-    const titles = this.props.posts.slice(0, 3).map((post) => post.title);
-
-    return (
-      <>
-        <div className="carousel">
-          <img src="left.png" id="left" onClick={this.prev} />
-          <div className="imageContainer">
-            <img src={images[currentImgIndex]} id="view" />
-            <div className="imageTitle">
-              <h3>{titles[currentImgIndex]}</h3>
-            </div>
+  return (
+    <>
+      <div className="carousel">
+        <img src="left.png" id="left" onClick={prev} />
+        <div className="imageContainer">
+          <img src={images[currentImgIndex]} id="view" />
+          <div className="imageTitle">
+            <h3>{titles[currentImgIndex]}</h3>
           </div>
-          <img src="right.png" id="right" onClick={this.next} />
-          <ul>
-            <li
-              onClick={() => this.setcurrentImgIndex(0)}
-              className={currentImgIndex === 0 ? "active" : ""}
-            ></li>
-            <li
-              onClick={() => this.setcurrentImgIndex(1)}
-              className={currentImgIndex === 1 ? "active" : ""}
-            ></li>
-            <li
-              onClick={() => this.setcurrentImgIndex(2)}
-              className={currentImgIndex === 2 ? "active" : ""}
-            ></li>
-          </ul>
         </div>
-      </>
-    );
-  }
-}
+        <img src="right.png" id="right" onClick={next} />
+        <ul>
+          <li
+            onClick={() => setCurrentImgIndex(0)}
+            className={currentImgIndex === 0 ? "active" : ""}
+          ></li>
+          <li
+            onClick={() => setCurrentImgIndex(1)}
+            className={currentImgIndex === 1 ? "active" : ""}
+          ></li>
+          <li
+            onClick={() => setCurrentImgIndex(2)}
+            className={currentImgIndex === 2 ? "active" : ""}
+          ></li>
+        </ul>
+      </div>
+    </>
+  );
+};
 export default Carousel;

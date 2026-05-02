@@ -1,4 +1,4 @@
-import { Component, useState } from "react";
+import { useState } from "react";
 import PostCard from "./PostCard";
 import axios from "axios";
 
