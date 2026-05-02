@@ -4,8 +4,8 @@ import "../styles/Footer.css";
 const Footer = () => {
   return (
     <>
-      <footer>
-        <p>Copyright &copy; 2023 Yousef. All rights reserved.</p>
+      <footer className="text-secondary py-4 mt-5 text-center">
+        <p className=" mb-0">Copyright &copy; 4 Yousef</p>
       </footer>
     </>
   );

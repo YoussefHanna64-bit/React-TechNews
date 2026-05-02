@@ -31,23 +31,30 @@ const PostCard = ({ category, title, userName, description, imageURL }) => {
 
   return (
     <>
-      <div className="Card">
-        <img src={imageURL} alt={title} className="PostImage" />
-        <div className="CardContent">
-          <p className="Category">{category}</p>
-          <h5 className="Title">
-            {title}
-            <small className="UserName">by {userName}</small>
-          </h5>
-          <p>{description}</p>
-          <div className="CardFooter">
-            <button className="ReadMore">Read More</button>
-            <div className="VoteButtons">
-              <Upvote count={upvoteCounter} handleUpvote={handleUpvote} />
-              <Downvote
-                count={downvoteCounter}
-                handleDownvote={handleDownvote}
-              />
+      <div className="col">
+        <div className="Card h-100 d-flex flex-column">
+          <img src={imageURL} alt={title} className="PostImage" />
+          <div className="d-flex flex-column flex-grow-1">
+            <div>
+              <p className="Category">{category}</p>
+            </div>
+
+            <h5 className="">
+              {title}
+              <small className="UserName">by {userName}</small>
+            </h5>
+
+            <p>{description}</p>
+
+            <div className="d-flex justify-content-between align-items-center pt-3 mt-auto">
+              <button className="ReadMore">Read More</button>
+              <div>
+                <Upvote count={upvoteCounter} handleUpvote={handleUpvote} />
+                <Downvote
+                  count={downvoteCounter}
+                  handleDownvote={handleDownvote}
+                />
+              </div>
             </div>
           </div>
         </div>

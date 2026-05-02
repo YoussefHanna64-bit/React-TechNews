@@ -3,7 +3,6 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import PostList from "../components/PostList";
 import Sidebar from "../components/Sidebar";
-import "../styles/Home.css";
 import Carousel from "../components/Carousel";
 import axios from "axios";
 
@@ -36,13 +35,17 @@ class Home extends Component {
     return (
       <>
         <Header></Header>
-        <Carousel posts={posts}></Carousel>
-        <main>
-          <div className="Side">
-            <Sidebar addPost={this.addPost}></Sidebar>
-          </div>
-          <div className="List">
-            <PostList posts={posts} />
+        <div className="container">
+          <Carousel posts={posts}></Carousel>
+        </div>
+        <main className="container mt-4">
+          <div className="row">
+            <div className="col-12 col-md-4 col-lg-3 mb-4">
+              <Sidebar addPost={this.addPost}></Sidebar>
+            </div>
+            <div className="col-12 col-md-8 col-lg-9">
+              <PostList posts={posts} />
+            </div>
           </div>
         </main>
         <Footer></Footer>

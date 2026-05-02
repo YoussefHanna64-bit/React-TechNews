@@ -1,6 +1,5 @@
 .Card {
   padding: 12px;
-  margin: 8px;
   margin-top: 0;
   border: 1px solid lightgrey;
   border-radius: 8px;
@@ -53,16 +52,4 @@
   object-fit: cover;
   border-radius: 8px;
   flex-shrink: 0;
-}
-
-.CardFooter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 16px;
-}
-
-.VoteButtons {
-  display: flex;
-  gap: 16px;
 }
