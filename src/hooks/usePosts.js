@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
 
 const usePosts = () => {
   const [posts, setPosts] = useState([]);
+  const [searchTitle, setSearchTitle] = useState("");
 
   useEffect(() => {
     getPosts();
@@ -18,7 +19,17 @@ const usePosts = () => {
     });
   }, []);
 
-  return { posts, addPost };
+  const filteredPosts = useMemo(() => {
+    if (!searchTitle) {
+      return posts;
+    }
+
+    return posts.filter((post) =>
+      post.title.toLowerCase().includes(searchTitle.toLowerCase()),
+    );
+  }, [posts, searchTitle]);
+
+  return { posts, addPost, filteredPosts, setSearchTitle };
 };
 
 export default usePosts;

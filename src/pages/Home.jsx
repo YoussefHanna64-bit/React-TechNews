@@ -4,10 +4,11 @@ import PostList from "../components/PostList";
 import Sidebar from "../components/Sidebar";
 import Carousel from "../components/Carousel";
 import usePosts from "../hooks/usePosts";
+import SearchBar from "../components/SearchBar";
 
 const Home = () => {
-  const { posts, addPost } = usePosts();
-  
+  const { posts, addPost, filteredPosts, setSearchTitle } = usePosts();
+
   return (
     <>
       <Header></Header>
@@ -20,7 +21,8 @@ const Home = () => {
             <Sidebar addPost={addPost}></Sidebar>
           </div>
           <div className="col-12 col-md-8 col-lg-9">
-            <PostList posts={posts} />
+            <SearchBar setSearchTitle={setSearchTitle}></SearchBar>
+            <PostList posts={filteredPosts}></PostList>
           </div>
         </div>
       </main>
