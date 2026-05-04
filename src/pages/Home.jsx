@@ -1,5 +1,3 @@
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import PostList from "../components/PostList";
 import Sidebar from "../components/Sidebar";
 import Carousel from "../components/Carousel";
@@ -11,7 +9,6 @@ const Home = () => {
 
   return (
     <>
-      <Header></Header>
       <div className="container">
         <Carousel posts={posts}></Carousel>
       </div>
@@ -26,7 +23,6 @@ const Home = () => {
           </div>
         </div>
       </main>
-      <Footer></Footer>
     </>
   );
 };

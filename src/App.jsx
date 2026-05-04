@@ -1,14 +1,40 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
 import "./App.css";
-import Home from "./pages/Home";
+const Home = lazy(() => import("./pages/Home"));
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
+import MainLayout from "./layouts/MainLayout";
+
+const routerCofig = createBrowserRouter([
+  {
+    element: <MainLayout />,
+    children: [
+      { index: true, element: <Navigate to="/home" replace /> },
+      {
+        path: "home",
+        element: <Home />,
+      },
+      { path: "*", element: <Navigate to="/home" replace /> },
+    ],
+  },
+]);
 
 function App() {
   return (
     <>
-      <Home></Home>
+      <Suspense
+        fallback={
+          <div className="d-flex justify-content-center align-items-center vh-100">
+            <div className="spinner-border text-warning" role="status">
+              <span className="sr-only"></span>
+            </div>
+          </div>
+        }
+      >
+        <RouterProvider router={routerCofig}></RouterProvider>
+      </Suspense>
     </>
   );
 }
