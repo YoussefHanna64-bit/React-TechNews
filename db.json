@@ -1,4 +1,12 @@
 {
+  "users": [
+    {
+      "name": "TheLegend",
+      "email": "Legend@gmail.com",
+      "password": "123456789",
+      "id": "Q3_tnKjC8hs"
+    }
+  ],
   "posts": [
     {
       "id": "1",

@@ -4,8 +4,12 @@ import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
 import "./App.css";
 const Home = lazy(() => import("./pages/Home"));
+const Login = lazy(() => import("./pages/Login"));
+const SignUp = lazy(() => import("./pages/SignUp"));
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
 import MainLayout from "./layouts/MainLayout";
+import AuthContext from "./context/AuthContext";
+import AuthLayout from "./layouts/AuthLayout";
 
 const routerCofig = createBrowserRouter([
   {
@@ -16,25 +20,40 @@ const routerCofig = createBrowserRouter([
         path: "home",
         element: <Home />,
       },
-      { path: "*", element: <Navigate to="/home" replace /> },
     ],
   },
+  {
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "signup",
+        element: <SignUp />,
+      },
+    ],
+  },
+  { path: "*", element: <Navigate to="/home" replace /> },
 ]);
 
 function App() {
   return (
     <>
-      <Suspense
-        fallback={
-          <div className="d-flex justify-content-center align-items-center vh-100">
-            <div className="spinner-border text-warning" role="status">
-              <span className="sr-only"></span>
+      <AuthContext>
+        <Suspense
+          fallback={
+            <div className="d-flex justify-content-center align-items-center vh-100">
+              <div className="spinner-border text-warning" role="status">
+                <span className="sr-only"></span>
+              </div>
             </div>
-          </div>
-        }
-      >
-        <RouterProvider router={routerCofig}></RouterProvider>
-      </Suspense>
+          }
+        >
+          <RouterProvider router={routerCofig}></RouterProvider>
+        </Suspense>
+      </AuthContext>
     </>
   );
 }
