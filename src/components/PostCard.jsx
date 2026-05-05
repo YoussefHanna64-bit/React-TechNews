@@ -1,55 +1,29 @@
-import { memo, useCallback, useReducer, useState } from "react";
+import { memo } from "react";
 import "../styles/PostCard.css";
 import Upvote from "./Upvote";
 import Downvote from "./Downvote";
+import { Link } from "react-router";
+import useVotes from "../hooks/useVotes";
 
-function voteReducer(state, action) {
-  switch (action.type) {
-    case "upvote":
-      return {
-        upvoteCounter: state.upvoteCounter === 1 ? 0 : 1,
-        downvoteCounter: 0,
-      };
-    case "downvote":
-      return {
-        upvoteCounter: 0,
-        downvoteCounter: state.downvoteCounter === 1 ? 0 : 1,
-      };
-    default:
-      return state;
-  }
-}
-
-const PostCard = ({ category, title, userName, description, imageURL }) => {
-  const [voteState, dispatch] = useReducer(voteReducer, {
-    upvoteCounter: 0,
-    downvoteCounter: 0,
-  });
-
-  const handleUpvote = useCallback(() => {
-    dispatch({ type: "upvote" });
-  }, []);
-
-  const handleDownvote = useCallback(() => {
-    dispatch({ type: "downvote" });
-  }, []);
+const PostCard = ({ post }) => {
+  const { voteState, handleUpvote, handleDownvote } = useVotes();
 
   return (
     <>
       <div className="col">
         <div className="Card h-100 d-flex flex-column">
-          <img src={imageURL} alt={title} className="PostImage" />
+          <img src={post.imageURL} alt={post.title} className="PostImage" />
           <div className="d-flex flex-column flex-grow-1">
             <div>
-              <p className="Category">{category}</p>
+              <p className="Category">{post.category}</p>
             </div>
 
             <h5 className="Title">
-              {title}
-              <small className="UserName">by {userName}</small>
+              {post.title}
+              <small className="UserName">by {post.userName}</small>
             </h5>
 
-            <p>{description}</p>
+            <p>{post.description}</p>
 
             <div className="d-flex justify-content-between align-items-center pt-3 mt-auto">
               <div>
@@ -62,7 +36,9 @@ const PostCard = ({ category, title, userName, description, imageURL }) => {
                   handleDownvote={handleDownvote}
                 />
               </div>
-              <button className="ReadMore">Read More</button>
+              <Link to={`/post/${post.id}`} className="ReadMore">
+                Read More
+              </Link>
             </div>
           </div>
         </div>

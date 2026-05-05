@@ -5,6 +5,7 @@ import heroImg from "./assets/hero.png";
 import "./App.css";
 const Home = lazy(() => import("./pages/Home"));
 const AddPost = lazy(() => import("./pages/AddPost"));
+const PostDetails = lazy(() => import("./pages/PostDetails"));
 const Login = lazy(() => import("./pages/Login"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
@@ -22,6 +23,10 @@ const routerCofig = createBrowserRouter([
       {
         path: "home",
         element: <Home />,
+      },
+      {
+        path: "post/:id",
+        element: <PostDetails />,
       },
       {
         element: <ProtectedRoute />,

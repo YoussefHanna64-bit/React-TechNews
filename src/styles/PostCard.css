@@ -38,11 +38,14 @@
   border-radius: 4px;
   font-size: 0.85rem;
   cursor: pointer;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
 .ReadMore:hover {
   background-color: orange;
-  color: white;
+  color: white !important;
+  text-decoration: none;
 }
 
 .PostImage {

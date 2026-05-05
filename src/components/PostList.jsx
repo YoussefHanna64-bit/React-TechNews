@@ -11,14 +11,7 @@ const PostList = ({ posts, handleVote }) => {
     <>
       <div className="row row-cols-1 row-cols-md-2 g-3">
         {posts.map((post) => (
-          <PostCard
-            key={post.id}
-            userName={post.userName}
-            title={post.title}
-            description={post.description}
-            category={post.category}
-            imageURL={post.imageURL}
-          />
+          <PostCard key={post.id} post={post} />
         ))}
       </div>
     </>
