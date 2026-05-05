@@ -4,9 +4,25 @@ body {
 }
 
 .OrangeColor {
-  color: orange ;
+  color: orange;
 }
 
-.btn-warning{
+.btn-warning {
   background-color: orange !important;
+}
+
+.btn-warning:hover {
+  background-color: darkorange !important;
+  border-color: darkorange !important;
+}
+
+.btn-outline-warning {
+  color: orange !important;
+  border-color: orange !important;
+}
+
+.btn-outline-warning:hover {
+  background-color: orange !important;
+  color: black !important;
+  border-color: orange !important;
 }

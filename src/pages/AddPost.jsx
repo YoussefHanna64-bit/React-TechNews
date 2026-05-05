@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import "../styles/Form.css";
+import "../styles/AddPost.css";
 import axios from "axios";
 import { PostContextConfig } from "../context/PostContext";
 import { AuthContextConfig } from "../context/AuthContext.jsx";
@@ -48,42 +48,46 @@ const AddPost = () => {
   return (
     <>
       <div className="container mt-5">
-        <h2 className="mb-4 fw-bold">
-          Create a New <span className="OrangeColor">Post</span>
-        </h2>
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-8 col-lg-6">
+            <h2 className="mb-3 fw-bold">
+              Create a New <span className="OrangeColor">Post</span>
+            </h2>
 
-        <div className="card shadow-sm p-4 border-0">
-          <form className="Form" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Title"
-              name="title"
-              value={postState.title}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              placeholder="Category"
-              name="category"
-              value={postState.category}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              placeholder="Image URL"
-              name="imageURL"
-              value={postState.imageURL}
-              onChange={handleChange}
-            />
-            <textarea
-              rows="3"
-              placeholder="Description"
-              name="description"
-              value={postState.description}
-              onChange={handleChange}
-            ></textarea>
-            <button className="submit">Publish</button>
-          </form>
+            <div className="p-4 border-0">
+              <form className="Form" onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  placeholder="Title"
+                  name="title"
+                  value={postState.title}
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  placeholder="Category"
+                  name="category"
+                  value={postState.category}
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  placeholder="Image URL"
+                  name="imageURL"
+                  value={postState.imageURL}
+                  onChange={handleChange}
+                />
+                <textarea
+                  rows="3"
+                  placeholder="Description"
+                  name="description"
+                  value={postState.description}
+                  onChange={handleChange}
+                ></textarea>
+                <button className="submit">Publish</button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </>

@@ -50,67 +50,69 @@ const SignUp = () => {
   return (
     <>
       <div className="container d-flex justify-content-center align-items-center vh-100">
-        <div className="p-4" style={{ width: "550px", marginTop: "-100px" }}>
-          <h3 className="text-center mb-4 fw-bold">
-            Join the
-            <Link to="/home" className="text-decoration-none mx-2 text-black">
-              <span className="OrangeColor">Tech</span>News
-            </Link>
-            Community
-          </h3>
-
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              className="form-control mb-3"
-              placeholder="Full name"
-              value={signUpState.name}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              className="form-control mb-3"
-              placeholder="Email address"
-              value={signUpState.email}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="password"
-              name="password"
-              className="form-control mb-3"
-              placeholder="Password"
-              value={signUpState.password}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="password"
-              name="confirmPassword"
-              className="form-control mb-3"
-              placeholder="Confirm Password"
-              value={signUpState.confirmPassword}
-              onChange={handleChange}
-              required
-            />
-            <button
-              type="submit"
-              className="btn btn-warning w-100 text-white fw-bold"
-            >
-              Sign Up
-            </button>
-          </form>
-
-          <div className="text-center mt-3">
-            <small className="text-muted">
-              Already have an account?
-              <Link to="/login" className="OrangeColor text-decoration-none ">
-                Login
+        <div className="row w-100 justify-content-center">
+          <div className="col-11 col-md-6 col-lg-5">
+            <h3 className="text-center mb-4 fw-bold">
+              Join the
+              <Link to="/home" className="text-decoration-none mx-2 text-black">
+                <span className="OrangeColor">Tech</span>News
               </Link>
-            </small>
+              Community
+            </h3>
+
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="name"
+                className="form-control mb-3"
+                placeholder="Full name"
+                value={signUpState.name}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                className="form-control mb-3"
+                placeholder="Email address"
+                value={signUpState.email}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="password"
+                name="password"
+                className="form-control mb-3"
+                placeholder="Password"
+                value={signUpState.password}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="password"
+                name="confirmPassword"
+                className="form-control mb-3"
+                placeholder="Confirm Password"
+                value={signUpState.confirmPassword}
+                onChange={handleChange}
+                required
+              />
+              <button
+                type="submit"
+                className="btn btn-warning w-100 text-white fw-bold"
+              >
+                Sign Up
+              </button>
+            </form>
+
+            <div className="text-center mt-3">
+              <small className="text-muted">
+                Already have an account?
+                <Link to="/login" className="OrangeColor text-decoration-none ">
+                  Login
+                </Link>
+              </small>
+            </div>
           </div>
         </div>
       </div>
