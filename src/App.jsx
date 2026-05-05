@@ -10,6 +10,7 @@ import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
 import MainLayout from "./layouts/MainLayout";
 import AuthContext from "./context/AuthContext";
 import AuthLayout from "./layouts/AuthLayout";
+import PostContext from "./context/PostContext";
 
 const routerCofig = createBrowserRouter([
   {
@@ -42,17 +43,19 @@ function App() {
   return (
     <>
       <AuthContext>
-        <Suspense
-          fallback={
-            <div className="d-flex justify-content-center align-items-center vh-100">
-              <div className="spinner-border text-warning" role="status">
-                <span className="sr-only"></span>
+        <PostContext>
+          <Suspense
+            fallback={
+              <div className="d-flex justify-content-center align-items-center vh-100">
+                <div className="spinner-border text-warning" role="status">
+                  <span className="sr-only"></span>
+                </div>
               </div>
-            </div>
-          }
-        >
-          <RouterProvider router={routerCofig}></RouterProvider>
-        </Suspense>
+            }
+          >
+            <RouterProvider router={routerCofig}></RouterProvider>
+          </Suspense>
+        </PostContext>
       </AuthContext>
     </>
   );

@@ -1,7 +1,11 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { createContext, useCallback, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 
-const usePosts = () => {
+export const PostContextConfig = createContext();
+
+const baseUrl = "http://localhost:3000/posts";
+
+const PostContext = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [searchTitle, setSearchTitle] = useState("");
 
@@ -29,7 +33,13 @@ const usePosts = () => {
     );
   }, [posts, searchTitle]);
 
-  return { posts, addPost, filteredPosts, setSearchTitle };
+  return (
+    <PostContextConfig.Provider
+      value={{ posts, setSearchTitle, addPost, filteredPosts }}
+    >
+      {children}
+    </PostContextConfig.Provider>
+  );
 };
 
-export default usePosts;
+export default PostContext;
