@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { PostContextConfig } from "../context/PostContext";
 
 const Home = () => {
-  const { posts, addPost, filteredPosts, setSearchTitle } =
+  const { posts, filteredPosts, setSearchTitle } =
     useContext(PostContextConfig);
 
   return (

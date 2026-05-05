@@ -6,14 +6,10 @@ export const AuthContextConfig = createContext();
 const baseUrl = "http://localhost:3000/users";
 
 const AuthContext = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
-
-  useEffect(() => {
+  const [currentUser, setCurrentUser] = useState(() => {
     const currUser = localStorage.getItem("currentUser");
-    if (currUser) {
-      setCurrentUser(JSON.parse(currUser));
-    }
-  }, []);
+    return currUser ? JSON.parse(currUser) : null;
+  });
 
   const login = async (user) => {
     try {

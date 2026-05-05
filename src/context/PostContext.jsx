@@ -1,4 +1,10 @@
-import { createContext, useCallback, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import axios from "axios";
 
 export const PostContextConfig = createContext();
@@ -14,13 +20,21 @@ const PostContext = ({ children }) => {
   }, []);
 
   const getPosts = () => {
-    axios.get("http://localhost:3000/posts").then((res) => setPosts(res.data));
+    axios.get(baseUrl).then((res) => setPosts(res.data));
   };
 
-  const addPost = useCallback((newPost) => {
-    axios.post("http://localhost:3000/posts", newPost).then((res) => {
-      setPosts((prevPosts) => [res.data, ...prevPosts]);
-    });
+  const addPost = useCallback(async (newPost) => {
+    try {
+      const res = await axios.post(baseUrl, newPost);
+
+      if (res.status === 201) {
+        setPosts((prevPosts) => [res.data, ...prevPosts]);
+        return true;
+      }
+      return false;
+    } catch (e) {
+      return false;
+    }
   }, []);
 
   const filteredPosts = useMemo(() => {

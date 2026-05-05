@@ -14,7 +14,7 @@ const Header = () => {
               Home
             </a>
             <a className="nav-link fw-semibold" href="#">
-              My Posts
+              Add Post
             </a>
           </div>
         </div>
