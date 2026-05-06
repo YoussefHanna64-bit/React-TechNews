@@ -22,8 +22,18 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (signUpState.name.trim().length < 3) {
+      toast.error("Name must be at least 3 chars");
+      return;
+    }
+
+    if (signUpState.password.length < 8) {
+      toast.error("Password must be at least 8 chars");
+      return;
+    }
+
     if (signUpState.password !== signUpState.confirmPassword) {
-      toast.error("Passwords dosn't match");
+      toast.error("Passwords dosen't match");
       return;
     }
 

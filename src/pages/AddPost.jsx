@@ -26,6 +26,16 @@ const AddPost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!postState.imageURL.startsWith("http")) {
+      toast.error("Please enter Image URL starting with http");
+      return;
+    }
+
+    if (postState.description.length > 150) {
+      toast.error("Keep description under 150 chars");
+      return;
+    }
+
     const post = {
       ...postState,
       userName: currentUser.name,
@@ -66,6 +76,7 @@ const AddPost = () => {
                   name="title"
                   value={postState.title}
                   onChange={handleChange}
+                  required
                 />
                 <input
                   type="text"
@@ -73,13 +84,15 @@ const AddPost = () => {
                   name="category"
                   value={postState.category}
                   onChange={handleChange}
+                  required
                 />
                 <input
-                  type="text"
+                  type="url"
                   placeholder="Image URL"
                   name="imageURL"
                   value={postState.imageURL}
                   onChange={handleChange}
+                  required
                 />
                 <textarea
                   rows="2"
@@ -87,6 +100,7 @@ const AddPost = () => {
                   name="description"
                   value={postState.description}
                   onChange={handleChange}
+                  required
                 ></textarea>
                 <textarea
                   rows="5"
@@ -94,6 +108,7 @@ const AddPost = () => {
                   name="article"
                   value={postState.article}
                   onChange={handleChange}
+                  required
                 ></textarea>
                 <button className="submit">Publish</button>
               </form>
