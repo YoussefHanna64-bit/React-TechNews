@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import User from "../models/UserModel.js";
 import { AuthContextConfig } from "../context/AuthContext.jsx";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const { signup } = useContext(AuthContextConfig);
@@ -22,7 +23,7 @@ const SignUp = () => {
     e.preventDefault();
 
     if (signUpState.password !== signUpState.confirmPassword) {
-      //toast
+      toast.error("Passwords dosn't match");
       return;
     }
 
@@ -35,9 +36,10 @@ const SignUp = () => {
     const res = await signup(usr);
 
     if (res) {
+      toast.success("Welocome to TechNews!");
       navigate("/home");
     } else {
-      //toast
+      toast.error("Failed to create account, please try again");
     }
 
     setSignUpState({

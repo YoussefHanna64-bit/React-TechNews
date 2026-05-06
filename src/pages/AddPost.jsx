@@ -4,6 +4,7 @@ import axios from "axios";
 import { PostContextConfig } from "../context/PostContext";
 import { AuthContextConfig } from "../context/AuthContext.jsx";
 import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
 
 const AddPost = () => {
   const { addPost } = useContext(PostContextConfig);
@@ -15,6 +16,7 @@ const AddPost = () => {
     category: "",
     imageURL: "",
     description: "",
+    article: "",
   });
 
   const handleChange = (e) => {
@@ -32,9 +34,10 @@ const AddPost = () => {
     const isadded = await addPost(post);
 
     if (isadded) {
+      toast.success("Post published successfully!");
       navigate("/home");
     } else {
-      // toast
+      toast.error("Failed to publish post, please try again");
     }
 
     setPostState({
@@ -42,6 +45,7 @@ const AddPost = () => {
       category: "",
       imageURL: "",
       description: "",
+      article: "",
     });
   };
 
@@ -78,10 +82,17 @@ const AddPost = () => {
                   onChange={handleChange}
                 />
                 <textarea
-                  rows="3"
+                  rows="2"
                   placeholder="Description"
                   name="description"
                   value={postState.description}
+                  onChange={handleChange}
+                ></textarea>
+                <textarea
+                  rows="5"
+                  placeholder="Article"
+                  name="article"
+                  value={postState.article}
                   onChange={handleChange}
                 ></textarea>
                 <button className="submit">Publish</button>

@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContextConfig } from "../context/AuthContext.jsx";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { login } = useContext(AuthContextConfig);
@@ -18,9 +19,10 @@ const Login = () => {
     const res = await login(loginState);
 
     if (res) {
+      toast.success("Welocome back to TechNews!");
       navigate("/home");
     } else {
-      //toast
+      toast.error("Invalid email or password");
     }
 
     setLoginState({

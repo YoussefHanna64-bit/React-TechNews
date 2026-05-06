@@ -14,6 +14,7 @@ import AuthContext from "./context/AuthContext";
 import AuthLayout from "./layouts/AuthLayout";
 import PostContext from "./context/PostContext";
 import ProtectedRoute from "./guards/ProtectedRoute";
+import { Toaster } from "react-hot-toast";
 
 const routerCofig = createBrowserRouter([
   {
@@ -60,6 +61,7 @@ function App() {
     <>
       <AuthContext>
         <PostContext>
+          <Toaster />
           <Suspense
             fallback={
               <div className="d-flex justify-content-center align-items-center vh-100">
