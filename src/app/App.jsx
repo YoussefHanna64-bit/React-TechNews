@@ -1,19 +1,19 @@
 import { lazy, Suspense, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/vite.svg";
-import heroImg from "./assets/hero.png";
+import reactLogo from "../assets/react.svg";
+import viteLogo from "../assets/vite.svg";
+import heroImg from "../assets/hero.png";
 import "./App.css";
-const Home = lazy(() => import("./pages/Home"));
-const AddPost = lazy(() => import("./pages/AddPost"));
-const PostDetails = lazy(() => import("./pages/PostDetails"));
-const Login = lazy(() => import("./pages/Login"));
-const SignUp = lazy(() => import("./pages/SignUp"));
+const Home = lazy(() => import("../pages/Home"));
+const AddPost = lazy(() => import("../pages/AddPost"));
+const PostDetails = lazy(() => import("../pages/PostDetails"));
+const Login = lazy(() => import("../pages/Login"));
+const SignUp = lazy(() => import("../pages/SignUp"));
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
-import MainLayout from "./layouts/MainLayout";
-import AuthContext from "./context/AuthContext";
-import AuthLayout from "./layouts/AuthLayout";
-import PostContext from "./context/PostContext";
-import ProtectedRoute from "./guards/ProtectedRoute";
+import MainLayout from "../layouts/MainLayout";
+import AuthContext from "../context/AuthContext";
+import AuthLayout from "../layouts/AuthLayout";
+import PostContext from "../context/PostContext";
+import ProtectedRoute from "../guards/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 
 const routerCofig = createBrowserRouter([

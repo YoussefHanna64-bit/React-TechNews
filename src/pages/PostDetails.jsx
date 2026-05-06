@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router";
 import Downvote from "../components/Downvote";
 import Upvote from "../components/Upvote";
 import "../styles/PostCard.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { PostContextConfig } from "../context/PostContext";
 import useVotes from "../hooks/useVotes";
 
@@ -12,6 +12,10 @@ const PostDetails = () => {
   const post = posts.find((p) => p.id === id);
 
   const { voteState, handleUpvote, handleDownvote } = useVotes();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!post) {
     return (

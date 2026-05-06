@@ -15,15 +15,8 @@ const Home = () => {
         <Carousel posts={posts}></Carousel>
       </div>
       <main className="container mt-4">
-        {/* <div className="row">
-          <div className="col-12 col-md-4 col-lg-3 mb-4">
-            <Sidebar addPost={addPost}></Sidebar>
-          </div> */}
-        {/* <div className="col-12 col-md-8 col-lg-9"> */}
         <SearchBar setSearchTitle={setSearchTitle}></SearchBar>
         <PostList posts={filteredPosts}></PostList>
-        {/* </div> */}
-        {/* </div> */}
       </main>
     </>
   );
