@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import { AuthContextConfig } from "../context/AuthContext";
 import { Navigate, Outlet } from "react-router";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 const ProtectedRoute = () => {
-  const { currentUser } = useContext(AuthContextConfig);
+  const { currentUser } = useSelector((state) => state.authR);
 
   if (!currentUser) {
     toast.error("You must be logged in to add posts");

@@ -2,13 +2,14 @@ import { Link, useParams } from "react-router";
 import Downvote from "../components/Downvote";
 import Upvote from "../components/Upvote";
 import "../styles/PostCard.css";
-import { useContext, useEffect } from "react";
-import { PostContextConfig } from "../context/PostContext";
+import { useEffect } from "react";
 import useVotes from "../hooks/useVotes";
+import { useSelector } from "react-redux";
 
 const PostDetails = () => {
   const { id } = useParams();
-  const { posts } = useContext(PostContextConfig);
+  const { posts } = useSelector((state) => state.postsR);
+
   const post = posts.find((p) => p.id === id);
 
   const { voteState, handleUpvote, handleDownvote } = useVotes();

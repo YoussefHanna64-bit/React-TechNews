@@ -1,8 +1,14 @@
 import { memo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchTitle } from "../Redux/slices/postSlice";
 
-const SearchBar = ({ setSearchTitle }) => {
+const SearchBar = () => {
+  const dispatch = useDispatch();
+
+  const { searchTitle } = useSelector((state) => state.postsR);
+
   const handleChange = (e) => {
-    setSearchTitle(e.target.value);
+    dispatch(setSearchTitle(e.target.value));
   };
 
   return (
@@ -16,7 +22,11 @@ const SearchBar = ({ setSearchTitle }) => {
           className="form-control border-start-0 ps-0"
           placeholder="Search"
           onChange={handleChange}
-          style={{ boxShadow: "none", borderColor: "rgb(222, 226, 230)", outline: "none" }}
+          style={{
+            boxShadow: "none",
+            borderColor: "rgb(222, 226, 230)",
+            outline: "none",
+          }}
         />
       </div>
     </div>

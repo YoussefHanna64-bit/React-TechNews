@@ -10,11 +10,11 @@ const Login = lazy(() => import("../pages/Login"));
 const SignUp = lazy(() => import("../pages/SignUp"));
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
 import MainLayout from "../layouts/MainLayout";
-import AuthContext from "../context/AuthContext";
 import AuthLayout from "../layouts/AuthLayout";
-import PostContext from "../context/PostContext";
 import ProtectedRoute from "../guards/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
+import storeConfig from "../Redux/store/store";
 
 const routerCofig = createBrowserRouter([
   {
@@ -59,22 +59,20 @@ const routerCofig = createBrowserRouter([
 function App() {
   return (
     <>
-      <AuthContext>
-        <PostContext>
-          <Toaster />
-          <Suspense
-            fallback={
-              <div className="d-flex justify-content-center align-items-center vh-100">
-                <div className="spinner-border text-warning" role="status">
-                  <span className="sr-only"></span>
-                </div>
+      <Provider store={storeConfig}>
+        <Toaster />
+        <Suspense
+          fallback={
+            <div className="d-flex justify-content-center align-items-center vh-100">
+              <div className="spinner-border text-warning" role="status">
+                <span className="sr-only"></span>
               </div>
-            }
-          >
-            <RouterProvider router={routerCofig}></RouterProvider>
-          </Suspense>
-        </PostContext>
-      </AuthContext>
+            </div>
+          }
+        >
+          <RouterProvider router={routerCofig}></RouterProvider>
+        </Suspense>
+      </Provider>
     </>
   );
 }

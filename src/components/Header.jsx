@@ -1,14 +1,16 @@
-import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../styles/Header.css";
-import { AuthContextConfig } from "../context/AuthContext";
 import { Link, NavLink, useNavigate } from "react-router";
+import { logout } from "../Redux/slices/authSlice";
 
 const Header = () => {
-  const { logout, currentUser } = useContext(AuthContextConfig);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { currentUser } = useSelector((state) => state.authR);
+
   const handleLogout = () => {
-    logout();
+    dispatch(logout());
     navigate("/login");
   };
 

@@ -1,10 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { AuthContextConfig } from "../context/AuthContext.jsx";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { login } from "../Redux/slices/authSlice.js";
 
 const Login = () => {
-  const { login } = useContext(AuthContextConfig);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [loginState, setLoginState] = useState({ email: "", password: "" });
@@ -16,9 +17,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await login(loginState);
+    const res = await dispatch(login(loginState));
 
-    if (res) {
+    if (res.payload) {
       toast.success("Welocome back to TechNews!");
       navigate("/home");
     } else {

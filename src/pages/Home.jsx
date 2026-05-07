@@ -2,12 +2,27 @@ import PostList from "../components/PostList";
 import Sidebar from "../components/Sidebar";
 import Carousel from "../components/Carousel";
 import SearchBar from "../components/SearchBar";
-import { useContext } from "react";
-import { PostContextConfig } from "../context/PostContext";
+import { useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getPosts } from "../Redux/slices/postSlice";
 
 const Home = () => {
-  const { posts, filteredPosts, setSearchTitle } =
-    useContext(PostContextConfig);
+  const dispatch = useDispatch();
+
+  const { posts, searchTitle } = useSelector((state) => state.postsR);
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, []);
+
+  const filteredPosts = useMemo(() => {
+    if (!searchTitle) {
+      return posts;
+    }
+    return posts.filter((post) =>
+      post.title.toLowerCase().includes(searchTitle.toLowerCase()),
+    );
+  }, [posts, searchTitle]);
 
   return (
     <>
@@ -15,7 +30,7 @@ const Home = () => {
         <Carousel posts={posts}></Carousel>
       </div>
       <main className="container mt-4">
-        <SearchBar setSearchTitle={setSearchTitle}></SearchBar>
+        <SearchBar></SearchBar>
         <PostList posts={filteredPosts}></PostList>
       </main>
     </>

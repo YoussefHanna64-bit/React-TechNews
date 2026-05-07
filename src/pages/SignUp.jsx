@@ -1,11 +1,12 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import User from "../models/UserModel.js";
-import { AuthContextConfig } from "../context/AuthContext.jsx";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { signup } from "../Redux/slices/authSlice.js";
 
 const SignUp = () => {
-  const { signup } = useContext(AuthContextConfig);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [signUpState, setSignUpState] = useState({
@@ -43,9 +44,9 @@ const SignUp = () => {
       signUpState.password,
     );
 
-    const res = await signup(usr);
+    const res = await dispatch(signup(usr));
 
-    if (res) {
+    if (res.payload) {
       toast.success("Welocome to TechNews!");
       navigate("/home");
     } else {

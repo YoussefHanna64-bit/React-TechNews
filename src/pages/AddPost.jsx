@@ -1,15 +1,16 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import "../styles/AddPost.css";
 import axios from "axios";
-import { PostContextConfig } from "../context/PostContext";
-import { AuthContextConfig } from "../context/AuthContext.jsx";
 import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { addPost } from "../Redux/slices/postSlice";
 
 const AddPost = () => {
-  const { addPost } = useContext(PostContextConfig);
-  const { currentUser } = useContext(AuthContextConfig);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { currentUser } = useSelector((state) => state.authR);
 
   const [postState, setPostState] = useState({
     title: "",
@@ -41,9 +42,9 @@ const AddPost = () => {
       userName: currentUser.name,
     };
 
-    const isadded = await addPost(post);
+    const isadded = await dispatch(addPost(post));
 
-    if (isadded) {
+    if (isadded.payload) {
       toast.success("Post published successfully!");
       navigate("/home");
     } else {
