@@ -59,11 +59,7 @@ function App() {
   const { theme } = useSelector((state) => state.themeR);
 
   useEffect(() => {
-    if (theme === "dark") {
-      document.body.classList.add("darkMode");
-    } else {
-      document.body.classList.remove("darkMode");
-    }
+    document.documentElement.setAttribute("data-bs-theme", theme);
   }, [theme]);
 
   return (
