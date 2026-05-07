@@ -2,16 +2,22 @@ import { useDispatch, useSelector } from "react-redux";
 import "../styles/Header.css";
 import { Link, NavLink, useNavigate } from "react-router";
 import { logout } from "../Redux/slices/authSlice";
+import { toggleTheme } from "../Redux/slices/themeSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { currentUser } = useSelector((state) => state.authR);
+  const { theme } = useSelector((state) => state.themeR);
 
   const handleLogout = () => {
     dispatch(logout());
     navigate("/login");
+  };
+
+  const handleThemeToggle = () => {
+    dispatch(toggleTheme());
   };
 
   return (
@@ -36,6 +42,17 @@ const Header = () => {
           </div>
 
           <div className="d-flex align-items-center ms-3">
+            <button
+              className="btn btn-outline-light me-4 border-0 "
+              onClick={handleThemeToggle}
+            >
+              {theme === "light" ? (
+                <i className="bi bi-moon-fill"></i>
+              ) : (
+                <i className="bi bi-sun-fill"></i>
+              )}
+            </button>
+
             {currentUser ? (
               <>
                 <span className="text-light me-3 fw-bold">

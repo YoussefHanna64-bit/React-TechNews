@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import reactLogo from "../assets/react.svg";
 import viteLogo from "../assets/vite.svg";
 import heroImg from "../assets/hero.png";
@@ -13,8 +13,7 @@ import MainLayout from "../layouts/MainLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import ProtectedRoute from "../guards/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
-import { Provider } from "react-redux";
-import storeConfig from "../Redux/store/store";
+import { useSelector } from "react-redux";
 
 const routerCofig = createBrowserRouter([
   {
@@ -57,22 +56,30 @@ const routerCofig = createBrowserRouter([
 ]);
 
 function App() {
+  const { theme } = useSelector((state) => state.themeR);
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.body.classList.add("darkMode");
+    } else {
+      document.body.classList.remove("darkMode");
+    }
+  }, [theme]);
+
   return (
     <>
-      <Provider store={storeConfig}>
-        <Toaster />
-        <Suspense
-          fallback={
-            <div className="d-flex justify-content-center align-items-center vh-100">
-              <div className="spinner-border text-warning" role="status">
-                <span className="sr-only"></span>
-              </div>
+      <Toaster />
+      <Suspense
+        fallback={
+          <div className="d-flex justify-content-center align-items-center vh-100">
+            <div className="spinner-border text-warning" role="status">
+              <span className="sr-only"></span>
             </div>
-          }
-        >
-          <RouterProvider router={routerCofig}></RouterProvider>
-        </Suspense>
-      </Provider>
+          </div>
+        }
+      >
+        <RouterProvider router={routerCofig}></RouterProvider>
+      </Suspense>
     </>
   );
 }

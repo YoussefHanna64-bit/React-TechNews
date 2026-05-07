@@ -77,7 +77,7 @@ const SignUp = () => {
               <input
                 type="text"
                 name="name"
-                className="form-control mb-3"
+                className="mb-3 w-100"
                 placeholder="Full name"
                 value={signUpState.name}
                 onChange={handleChange}
@@ -86,7 +86,7 @@ const SignUp = () => {
               <input
                 type="email"
                 name="email"
-                className="form-control mb-3"
+                className="mb-3 w-100"
                 placeholder="Email address"
                 value={signUpState.email}
                 onChange={handleChange}
@@ -95,7 +95,7 @@ const SignUp = () => {
               <input
                 type="password"
                 name="password"
-                className="form-control mb-3"
+                className="mb-3 w-100"
                 placeholder="Password"
                 value={signUpState.password}
                 onChange={handleChange}
@@ -104,7 +104,7 @@ const SignUp = () => {
               <input
                 type="password"
                 name="confirmPassword"
-                className="form-control mb-3"
+                className="mb-3 w-100"
                 placeholder="Confirm Password"
                 value={signUpState.confirmPassword}
                 onChange={handleChange}

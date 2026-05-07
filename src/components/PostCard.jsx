@@ -11,7 +11,7 @@ const PostCard = ({ post }) => {
   return (
     <>
       <div className="col">
-        <div className="Card h-100 d-flex flex-column">
+        <div className="card h-100 d-flex flex-column">
           <img src={post.imageURL} alt={post.title} className="PostImage" />
           <div className="d-flex flex-column flex-grow-1">
             <div>

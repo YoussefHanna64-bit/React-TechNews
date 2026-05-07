@@ -47,7 +47,7 @@ const Login = () => {
               <input
                 type="email"
                 name="email"
-                className="form-control mb-3"
+                className="mb-3 w-100"
                 placeholder="Email address"
                 value={loginState.email}
                 onChange={handleChange}
@@ -57,7 +57,7 @@ const Login = () => {
               <input
                 type="password"
                 name="password"
-                className="form-control mb-3"
+                className="mb-3 w-100"
                 placeholder="Password"
                 value={loginState.password}
                 onChange={handleChange}

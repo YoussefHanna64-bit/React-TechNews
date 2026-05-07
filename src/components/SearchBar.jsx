@@ -14,12 +14,12 @@ const SearchBar = () => {
   return (
     <div className="mb-4">
       <div className="input-group shadow-sm">
-        <span className="input-group-text bg-white border-end-0 text-muted">
+        <span className="input-group-text border-end-0 text-muted bg-transparent">
           <i className="bi bi-search"></i>
         </span>
         <input
           type="text"
-          className="form-control border-start-0 ps-0"
+          className="form-control border-start-0 ps-0 bg-transparent"
           placeholder="Search"
           onChange={handleChange}
           style={{
