@@ -2,12 +2,16 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import User from "../models/UserModel.js";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../Redux/slices/authSlice.js";
+import { useTranslation } from "react-i18next";
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { t } = useTranslation("signup");
+  const { language } = useSelector((state) => state.i18nR);
 
   const [signUpState, setSignUpState] = useState({
     name: "",
@@ -24,17 +28,17 @@ const SignUp = () => {
     e.preventDefault();
 
     if (signUpState.name.trim().length < 3) {
-      toast.error("Name must be at least 3 chars");
+      toast.error(t("Name must be at least 3 chars"));
       return;
     }
 
     if (signUpState.password.length < 8) {
-      toast.error("Password must be at least 8 chars");
+      toast.error(t("Password must be at least 8 chars"));
       return;
     }
 
     if (signUpState.password !== signUpState.confirmPassword) {
-      toast.error("Passwords dosen't match");
+      toast.error(t("Passwords dosen't match"));
       return;
     }
 
@@ -47,10 +51,10 @@ const SignUp = () => {
     const res = await dispatch(signup(usr));
 
     if (res.payload) {
-      toast.success("Welocome to TechNews!");
+      toast.success(t("Welcome to TechNews!"));
       navigate("/home");
     } else {
-      toast.error("Failed to create account, please try again");
+      toast.error(t("Failed to create account, please try again"));
     }
 
     setSignUpState({
@@ -62,15 +66,18 @@ const SignUp = () => {
   };
   return (
     <>
-      <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div
+        className="container d-flex justify-content-center align-items-center vh-100"
+        dir={language === "ar" ? "rtl" : "ltr"}
+      >
         <div className="row w-100 justify-content-center">
           <div className="col-11 col-md-6 col-lg-5">
             <h3 className="text-center mb-4 fw-bold">
-              Join the
+              {t("Join the")}
               <Link to="/home" className="text-decoration-none mx-2 text-black">
                 <span className="OrangeColor">Tech</span>News
               </Link>
-              Community
+              {t("Community")}
             </h3>
 
             <form onSubmit={handleSubmit}>
@@ -78,7 +85,7 @@ const SignUp = () => {
                 type="text"
                 name="name"
                 className="mb-3 w-100"
-                placeholder="Full name"
+                placeholder={t("Full name")}
                 value={signUpState.name}
                 onChange={handleChange}
                 required
@@ -87,7 +94,7 @@ const SignUp = () => {
                 type="email"
                 name="email"
                 className="mb-3 w-100"
-                placeholder="Email address"
+                placeholder={t("Email address")}
                 value={signUpState.email}
                 onChange={handleChange}
                 required
@@ -96,7 +103,7 @@ const SignUp = () => {
                 type="password"
                 name="password"
                 className="mb-3 w-100"
-                placeholder="Password"
+                placeholder={t("Password")}
                 value={signUpState.password}
                 onChange={handleChange}
                 required
@@ -105,7 +112,7 @@ const SignUp = () => {
                 type="password"
                 name="confirmPassword"
                 className="mb-3 w-100"
-                placeholder="Confirm Password"
+                placeholder={t("Confirm Password")}
                 value={signUpState.confirmPassword}
                 onChange={handleChange}
                 required
@@ -114,15 +121,15 @@ const SignUp = () => {
                 type="submit"
                 className="btn btn-warning w-100 text-white fw-bold"
               >
-                Sign Up
+                {t("Sign Up")}
               </button>
             </form>
 
             <div className="text-center mt-3">
               <small className="text-muted">
-                Already have an account?
+                {t("Already have an account?")}
                 <Link to="/login" className="OrangeColor text-decoration-none ">
-                  Login
+                  {t("Login")}
                 </Link>
               </small>
             </div>

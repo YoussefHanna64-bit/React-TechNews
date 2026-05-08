@@ -14,6 +14,7 @@ import AuthLayout from "../layouts/AuthLayout";
 import ProtectedRoute from "../guards/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const routerCofig = createBrowserRouter([
   {
@@ -57,10 +58,16 @@ const routerCofig = createBrowserRouter([
 
 function App() {
   const { theme } = useSelector((state) => state.themeR);
+  const { language } = useSelector((state) => state.i18nR);
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     document.documentElement.setAttribute("data-bs-theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, [language, i18n]);
 
   return (
     <>

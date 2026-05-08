@@ -1,0 +1,16 @@
+{
+  "Join the": "Join the",
+  "Community": "Community",
+  "Full name": "Full name",
+  "Email address": "Email address",
+  "Password": "Password",
+  "Confirm Password": "Confirm Password",
+  "Sign Up": "Sign Up",
+  "Already have an account?": "Already have an account?",
+  "Login": "Login",
+  "Name must be at least 3 chars": "Name must be at least 3 chars",
+  "Password must be at least 8 chars": "Password must be at least 8 chars",
+  "Passwords dosen't match": "Passwords don't match",
+  "Welcome to TechNews!": "Welcome to TechNews!",
+  "Failed to create account, please try again": "Failed to create account, please try again"
+}

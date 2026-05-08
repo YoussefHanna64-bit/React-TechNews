@@ -1,0 +1,16 @@
+{
+  "Join the": "انضم إلى",
+  "Community": "مجتمع",
+  "Full name": "الاسم الكامل",
+  "Email address": "البريد الإلكتروني",
+  "Password": "كلمة المرور",
+  "Confirm Password": "تأكيد كلمة المرور",
+  "Sign Up": "إنشاء حساب",
+  "Already have an account?": "لديك حساب بالفعل؟",
+  "Login": "تسجيل الدخول",
+  "Name must be at least 3 chars": "يجب أن يكون الاسم 3 أحرف على الأقل",
+  "Password must be at least 8 chars": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+  "Passwords dosen't match": "كلمات المرور غير متطابقة",
+  "Welcome to TechNews!": "مرحباً بك في TechNews!",
+  "Failed to create account, please try again": "فشل إنشاء الحساب، يرجى المحاولة مرة أخرى"
+}

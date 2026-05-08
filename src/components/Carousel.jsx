@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import "../styles/Carousel.css";
+import { useTranslation } from "react-i18next";
 
 const Carousel = ({ posts }) => {
+  const { t } = useTranslation("extra");
+
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
   const images = useMemo(() => {
@@ -33,7 +36,7 @@ const Carousel = ({ posts }) => {
   };
 
   if (posts.length === 0) {
-    return <div className="carousel">No posts available</div>;
+    return <div className="carousel">{t("No posts available")}</div>;
   }
 
   return (

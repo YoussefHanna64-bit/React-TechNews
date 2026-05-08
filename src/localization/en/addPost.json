@@ -1,0 +1,14 @@
+{
+  "Create a New": "Create a New",
+  "Post": "Post",
+  "Title": "Title",
+  "Category": "Category",
+  "Image URL": "Image URL",
+  "Description": "Description",
+  "Article": "Article",
+  "Publish": "Publish",
+  "Please enter Image URL starting with http": "Please enter Image URL starting with http",
+  "Keep description under 150 chars": "Keep description under 150 chars",
+  "Post published successfully!": "Post published successfully!",
+  "Failed to publish post, please try again": "Failed to publish post, please try again"
+}

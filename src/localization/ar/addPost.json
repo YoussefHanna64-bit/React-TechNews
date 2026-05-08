@@ -1,0 +1,14 @@
+{
+  "Create a New": "إنشاء",
+  "Post": "مقال جديد",
+  "Title": "العنوان",
+  "Category": "التصنيف",
+  "Image URL": "رابط الصورة",
+  "Description": "الوصف",
+  "Article": "المحتوى",
+  "Publish": "نشر",
+  "Please enter Image URL starting with http": "يرجى إدخال رابط صورة يبدأ بـ http",
+  "Keep description under 150 chars": "يجب أن يكون الوصف أقل من 150 حرفاً",
+  "Post published successfully!": "تم نشر المقال بنجاح!",
+  "Failed to publish post, please try again": "فشل النشر، يرجى المحاولة مرة أخرى"
+}

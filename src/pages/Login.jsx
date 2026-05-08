@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../Redux/slices/authSlice.js";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { t } = useTranslation("login");
+  const { language } = useSelector((state) => state.i18nR);
 
   const [loginState, setLoginState] = useState({ email: "", password: "" });
 
@@ -33,11 +37,14 @@ const Login = () => {
   };
   return (
     <>
-      <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div
+        className="container d-flex justify-content-center align-items-center vh-100"
+        dir={language === "ar" ? "rtl" : "ltr"}
+      >
         <div className="row w-100 justify-content-center">
           <div className="col-11 col-md-6 col-lg-5">
             <h3 className="text-center mb-4 fw-bold">
-              Welcome Back to
+              {t("Welcome Back to")}
               <Link to="/home" className="text-decoration-none ms-2 text-black">
                 <span className="OrangeColor">Tech</span>News
               </Link>
@@ -48,7 +55,7 @@ const Login = () => {
                 type="email"
                 name="email"
                 className="mb-3 w-100"
-                placeholder="Email address"
+                placeholder={t("Email address")}
                 value={loginState.email}
                 onChange={handleChange}
                 required
@@ -58,7 +65,7 @@ const Login = () => {
                 type="password"
                 name="password"
                 className="mb-3 w-100"
-                placeholder="Password"
+                placeholder={t("Password")}
                 value={loginState.password}
                 onChange={handleChange}
                 required
@@ -68,15 +75,15 @@ const Login = () => {
                 type="submit"
                 className="btn btn-warning w-100 text-white fw-bold"
               >
-                Login
+                {t("Login")}
               </button>
             </form>
 
             <div className="text-center mt-3">
               <small className="text-muted">
-                Don't have an account?
+                {t("Don't have an account?")}
                 <Link to="/signup" className="OrangeColor text-decoration-none">
-                  Sign up
+                  {t("Sign up")}
                 </Link>
               </small>
             </div>

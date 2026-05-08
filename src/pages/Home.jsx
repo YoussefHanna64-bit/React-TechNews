@@ -1,5 +1,4 @@
 import PostList from "../components/PostList";
-import Sidebar from "../components/Sidebar";
 import Carousel from "../components/Carousel";
 import SearchBar from "../components/SearchBar";
 import { useEffect, useMemo } from "react";
