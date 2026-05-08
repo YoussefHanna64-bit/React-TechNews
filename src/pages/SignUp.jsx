@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../Redux/slices/authSlice.js";
 import { useTranslation } from "react-i18next";
+import "../styles/AddPost.css";
 
 const SignUp = () => {
   const dispatch = useDispatch();

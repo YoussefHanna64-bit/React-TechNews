@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../Redux/slices/authSlice.js";
 import { useTranslation } from "react-i18next";
+import "../styles/AddPost.css";
 
 const Login = () => {
   const dispatch = useDispatch();

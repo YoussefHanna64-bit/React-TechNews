@@ -63,7 +63,7 @@ const Header = () => {
             </button>
 
             <button
-              className="btn btn-outline-light me-4 border-0 "
+              className="btn btn-outline-light mx-2 border-0 "
               onClick={handleThemeToggle}
             >
               {theme === "light" ? (
@@ -89,7 +89,7 @@ const Header = () => {
               <>
                 <Link
                   to="/login"
-                  className="nav-link text-light fw-semibold me-3"
+                  className="nav-link text-light fw-semibold mx-3"
                 >
                   {t("Login")}
                 </Link>
