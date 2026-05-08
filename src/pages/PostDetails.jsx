@@ -5,11 +5,15 @@ import "../styles/PostCard.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { upvotePost, downvotePost } from "../Redux/slices/postSlice";
+import { useTranslation } from "react-i18next";
 
 const PostDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.postsR);
+
+  const { t } = useTranslation("extra");
+  const { language } = useSelector((state) => state.i18nR);
 
   const post = posts.find((p) => p.id === id);
 
@@ -29,19 +33,19 @@ const PostDetails = () => {
     return (
       <div className="container mt-5 text-center">
         <div className="spinner-border text-warning" role="status"></div>
-        <h3 className="mt-3">Loading post...</h3>
+        <h3 className="mt-3">{t("Loading post...")}</h3>
       </div>
     );
   }
 
   return (
     <>
-      <div className="container">
+      <div className="container" dir={language === "en" ? "ltr" : "rtl"}>
         <Link
           to="/home"
           className="text-decoration-none text-muted mb-3 d-inline-block"
         >
-          <i className="bi bi-arrow-left"></i> Back to Feed
+          <i className="bi bi-arrow-left"></i> {t("Back to Feed")}
         </Link>
 
         <div className="bg-white rounded shadow-sm p-4">
@@ -54,7 +58,9 @@ const PostDetails = () => {
 
           <div className="d-flex justify-content-between align-items-center mb-4">
             <div>
-              <h5 className="text-muted">By {post.userName}</h5>
+              <h5 className="text-muted">
+                {t("By")} {post.userName}
+              </h5>
               <span className="Category">{post.category}</span>
             </div>
 
