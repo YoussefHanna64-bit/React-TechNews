@@ -3,16 +3,23 @@ import Downvote from "../components/Downvote";
 import Upvote from "../components/Upvote";
 import "../styles/PostCard.css";
 import { useEffect } from "react";
-import useVotes from "../hooks/useVotes";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { upvotePost, downvotePost } from "../Redux/slices/postSlice";
 
 const PostDetails = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.postsR);
 
   const post = posts.find((p) => p.id === id);
 
-  const { voteState, handleUpvote, handleDownvote } = useVotes();
+  const handleUpvote = () => {
+    dispatch(upvotePost(post));
+  };
+
+  const handleDownvote = () => {
+    dispatch(downvotePost(post));
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -52,12 +59,9 @@ const PostDetails = () => {
             </div>
 
             <div className="d-flex align-items-center">
-              <Upvote
-                count={voteState.upvoteCounter}
-                handleUpvote={handleUpvote}
-              />
+              <Upvote count={post.upvotes || 0} handleUpvote={handleUpvote} />
               <Downvote
-                count={voteState.downvoteCounter}
+                count={post.downvotes || 0}
                 handleDownvote={handleDownvote}
               />
             </div>

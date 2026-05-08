@@ -3,14 +3,22 @@ import "../styles/PostCard.css";
 import Upvote from "./Upvote";
 import Downvote from "./Downvote";
 import { Link } from "react-router";
-import useVotes from "../hooks/useVotes";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { upvotePost, downvotePost } from "../Redux/slices/postSlice";
 
 const PostCard = ({ post }) => {
-  const { voteState, handleUpvote, handleDownvote } = useVotes();
+  const dispatch = useDispatch();
   const { t } = useTranslation("postCard");
   const { language } = useSelector((state) => state.i18nR);
+
+  const handleUpvote = () => {
+    dispatch(upvotePost(post));
+  };
+
+  const handleDownvote = () => {
+    dispatch(downvotePost(post));
+  };
 
   return (
     <>
@@ -33,12 +41,9 @@ const PostCard = ({ post }) => {
 
             <div className="d-flex justify-content-between align-items-center pt-3 mt-auto">
               <div>
-                <Upvote
-                  count={voteState.upvoteCounter}
-                  handleUpvote={handleUpvote}
-                />
+                <Upvote count={post.upvotes || 0} handleUpvote={handleUpvote} />
                 <Downvote
-                  count={voteState.downvoteCounter}
+                  count={post.downvotes || 0}
                   handleDownvote={handleDownvote}
                 />
               </div>

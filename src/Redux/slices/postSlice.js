@@ -21,6 +21,59 @@ export const addPost = createAsyncThunk("posts/addPost", async (newPost) => {
   }
 });
 
+export const upvotePost = createAsyncThunk("posts/upvotePost", async (post) => {
+  const myVotes = JSON.parse(localStorage.getItem("myVotes")) || {};
+  const currentVote = myVotes[post.id];
+
+  const isUpvote = currentVote === "up";
+  const isDownvote = currentVote === "down";
+
+  const updatedPost = {
+    ...post,
+    upvotes: isUpvote ? post.upvotes - 1 : (post.upvotes || 0) + 1,
+    downvotes: isDownvote ? post.downvotes - 1 : post.downvotes || 0,
+  };
+
+  const res = await axios.patch(`${baseUrl}/${post.id}`, updatedPost);
+
+  if (isUpvote) {
+    delete myVotes[post.id];
+  } else {
+    myVotes[post.id] = "up";
+  }
+  localStorage.setItem("myVotes", JSON.stringify(myVotes));
+
+  return res.data;
+});
+
+export const downvotePost = createAsyncThunk(
+  "posts/downvotePost",
+  async (post) => {
+    const myVotes = JSON.parse(localStorage.getItem("myVotes")) || {};
+    const currentVote = myVotes[post.id];
+
+    const isUpvote = currentVote === "up";
+    const isDownvote = currentVote === "down";
+
+    const updatedPost = {
+      ...post,
+      downvotes: isDownvote ? post.downvotes - 1 : (post.downvotes || 0) + 1,
+      upvotes: isUpvote ? post.upvotes - 1 : post.upvotes || 0,
+    };
+
+    const res = await axios.patch(`${baseUrl}/${post.id}`, updatedPost);
+
+    if (isDownvote) {
+      delete myVotes[post.id];
+    } else {
+      myVotes[post.id] = "down";
+    }
+    localStorage.setItem("myVotes", JSON.stringify(myVotes));
+
+    return res.data;
+  },
+);
+
 const postSlice = createSlice({
   name: "posts",
   initialState: {
@@ -39,6 +92,20 @@ const postSlice = createSlice({
 
     builder.addCase(addPost.fulfilled, (state, action) => {
       state.posts.unshift(action.payload);
+    });
+
+    builder.addCase(upvotePost.fulfilled, (state, action) => {
+      const index = state.posts.findIndex((p) => p.id === action.payload.id);
+      if (index !== -1) {
+        state.posts[index] = action.payload;
+      }
+    });
+
+    builder.addCase(downvotePost.fulfilled, (state, action) => {
+      const index = state.posts.findIndex((p) => p.id === action.payload.id);
+      if (index !== -1) {
+        state.posts[index] = action.payload;
+      }
     });
   },
 });
