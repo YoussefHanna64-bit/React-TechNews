@@ -8,21 +8,21 @@ export const getAllPosts = async (req, res) => {
 };
 
 export const createPost = async (req, res) => {
-  const { title, description, category, imageURL, userName } = req.body;
+  const { title, description, article, category, imageURL } = req.body;
 
-  if (!title || !description || !category || !userName) {
+  if (!title || !description || !article || !category) {
     throw createError(
       400,
-      "Title, description, category, and user name fields are required",
+      "Title, description, article, and category fields are required",
     );
   }
 
   const post = await Post.create({
     title,
     description,
+    article,
     category,
     imageURL,
-    userName,
   });
 
   res.status(201).json({ success: true, post });
