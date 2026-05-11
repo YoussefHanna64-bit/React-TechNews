@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/dbConfig.js";
 import postRoutes from "./routes/postRoutes.js";
+import authRoute from "./routes/authRoute.js";
 import cors from "cors";
 import { handleError } from "./middleware/errorHandling.js";
 
@@ -11,6 +12,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoutes);
 
 app.use(handleError);
